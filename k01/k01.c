@@ -82,7 +82,7 @@ int BinarySearch(int key, City arrayCity[], int left, int right)
     //  ここを実装する
     int pos;
 
-    pos = left + (left - right)/2;
+    pos = left + (right - left)/2;
    
     if(arrayCity[pos].id==key){
         return pos;
