@@ -76,6 +76,10 @@ void PrintList(Node* pTop)
 Node* InsertNewNode(City newCity, Node* pNext)
 {
     //  ここを実装する
+    Node aaa;
+    aaa.city =newCity;
+    aaa.pNext = &pNext;
+    return &aaa;
 
 }
 
@@ -100,7 +104,20 @@ int SearchCityByName(Node* pList, char* cityName, City* pCity)
 int SearchCityByID(Node* pList, int ID, City* pCity)
 {
     // ここを実装する
+    // ptop, key, &city
+    Node* pNode;
+    pNode = pList;
+    int cn=1;
 
+    while(pNode==NULL){
+        if(ID==pCity){
+            return cn;
+        }
+        pNode = pNode -> pNext;
+        cn++;
+    }
+    
+    return -1;
 }
 
 int main(void)
@@ -139,7 +156,9 @@ int main(void)
     // IDで特定の市町村を探す
     printf("City ID?");
     scanf("%d", &key);
+
     cn = SearchCityByID(pTop, key, &city);
+
     if (cn != -1) {
         printf("the city was found at %d\n", cn);
         PrintCity(city);
