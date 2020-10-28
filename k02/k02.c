@@ -76,11 +76,9 @@ void PrintList(Node* pTop)
 Node* InsertNewNode(City newCity, Node* pNext)
 {
     //  ここを実装する
-    Node aaa;
-    aaa.city =newCity;
-    aaa.pNext = &pNext;
-    return &aaa;
-
+    Node* pNode;
+    pNode = malloc(sizeof(int));
+    return (newCity,pNext);
 }
 
 #ifdef CHALLENGE1
@@ -145,6 +143,7 @@ int main(void)
 #endif
         //  読み込んだ市町村データをリストの先頭に挿入し
         //  その先頭をpTopに入れる
+
         pTop = InsertNewNode(city, pTop);
     
         cn++;
