@@ -77,8 +77,10 @@ Node* InsertNewNode(City newCity, Node* pNext)
 {
     //  ここを実装する
     Node* pNode;
-    pNode = malloc(sizeof(int));
-    return (newCity,pNext);
+    pNode = malloc(sizeof(Node));
+    pNode->city = newCity;
+    pNode->pNext = pNext;
+    return pNode;
 }
 
 #ifdef CHALLENGE1
@@ -106,13 +108,15 @@ int SearchCityByID(Node* pList, int ID, City* pCity)
     Node* pNode;
     pNode = pList;
     int cn=1;
-
-    while(pNode==NULL){
-        if(ID==pCity){
+    int city5;
+    while(pNode!=NULL){
+        city5 = pNode->city.id;
+        if(ID == city5){
             return cn;
         }
         pNode = pNode -> pNext;
         cn++;
+    
     }
     
     return -1;
