@@ -107,16 +107,17 @@ int SearchCityByID(Node* pList, int ID, City* pCity)
     // ptop, key, &city
     Node* pNode;
     pNode = pList;
-    int cn=1;
-    int city5;
+    int cn=0;
+    int id;
     while(pNode!=NULL){
-        city5 = pNode->city.id;
-        if(ID == city5){
+        id = pNode->city.id;
+        
+        if(ID == id){
             return cn;
         }
+
         pNode = pNode -> pNext;
         cn++;
-    
     }
     
     return -1;
