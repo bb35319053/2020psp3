@@ -113,6 +113,7 @@ int SearchCityByID(Node* pList, int ID, City* pCity)
         id = pNode->city.id;
         
         if(ID == id){
+            pCity = &pNode->city;
             return cn;
         }
 
@@ -162,7 +163,7 @@ int main(void)
     scanf("%d", &key);
 
     cn = SearchCityByID(pTop, key, &city);
-
+    
     if (cn != -1) {
         printf("the city was found at %d\n", cn);
         PrintCity(city);
@@ -198,3 +199,4 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 }
+//chcp.com 65001
