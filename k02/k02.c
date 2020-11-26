@@ -113,7 +113,7 @@ int SearchCityByID(Node* pList, int ID, City* pCity)
         id = pNode->city.id;
         
         if(ID == id){
-            pCity = &pNode->city;
+            *pCity = pNode->city;
             return cn;
         }
 
