@@ -11,11 +11,23 @@ char StrKey[] = "wind";
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
-    int pos;
+    int pos, i, a=0;
+    int text_len, key_len;
 
-    for(pos = 0; text[pos] != '$0'; pos++){
-        if(text[pos] == key[0] && text[pos+1] == key[1] && text[pos+2] == key[2] && text[pos+3] == key[3]){
-            return &text[pos];
+    text_len = strlen(text);
+    key_len = strlen(key);
+
+    for(pos = 0; pos != text_len - key_len - 1; pos++){
+        for(i=0; i<key_len; i++){
+            if(key[i] != text[pos]){
+                break;
+            }else{
+                a++;
+            }
+
+            if(a==key_len){
+                return &text[pos];
+            }
         }
     }
     
@@ -25,27 +37,33 @@ char* ForceSearch(char text[], char key[])
 char* BMSearch(char text[], char key[])
 {
     //  ここを実装する
-    int index, i, j;
-    int key_len;
-
+    int index, i, key_len, text_len, table[256];
+    
     key_len = strlen(key);
+    text_len = strlen(text);
     index = key_len -1;
 
-    while(text[index] != '$0'){
-        if(text[index] == key[key_len - 1] && text[index] == key[key_len - 2] && text[index] == key[key_len - 3] && text[index] == key[key_len - 4]){
-            return &text[index - key_len + 1];
-        }
+    //table
+    for(index=0; index<=key_len; index++){
+        table[index] = key_len;
+    }
+    for(index=0; index<key_len; index++){
+        table[key[index]] = key_len - index - 1;
+    }
 
-        for(i = 1; i < key_len; i++){
-            if(text[index] == key[key_len-1-i]){
-                index = index + i;
-                j=1;
+    //seach
+    for(index = key_len -1; index != text_len - 1; index = table[text[index]]){
+        for(i=key_len-1; i>key_len; i--){
+            if(text[index]==key[i]){
+                if(i==0){
+                    return &text[index];
+                }
+            }else{
+                break;
             }
         }
 
-        if(j==1){
-            index = index + key_len;
-        }
+        index = table[text[index]];
     }
 
     return NULL;
