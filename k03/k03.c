@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define DEBUG
 
@@ -10,12 +11,66 @@ char StrKey[] = "wind";
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
+    int pos, i, a=0;
+    int text_len, key_len;
 
+    text_len = strlen(text);
+    key_len = strlen(key);
+
+    for(pos = 0; pos != text_len - key_len - 1; pos++){
+        for(i=0; i<key_len; i++){
+            if(key[i] == text[pos+i]){
+                a++;
+            }else{
+                break;
+            }
+
+            if(a==key_len){
+                return &text[pos];
+            }
+        }
+        a=0;
+    }
+    
+    return NULL;
 }
 
 char* BMSearch(char text[], char key[])
 {
     //  ここを実装する
+    int index, indexA, i, key_len, text_len, table[256];
+    
+    key_len = strlen(key);
+    text_len = strlen(text);
+
+    //table
+    for(index=0; index<=255; index++){
+        table[index] = key_len;
+    }
+    for(index=0; index<key_len; index++){
+        table[key[index]] = key_len - index - 1;
+    }
+
+
+    //seach
+    for(index = key_len -1; index < text_len - 1; index = index + table[text[index]]){
+        indexA = index;
+        for(i=0; i<key_len; i++){
+            if(text[index]==key[key_len-1-i]){
+                if(i==key_len-1){
+                    return &text[index];
+                }
+                index = index-1;
+            }else{
+                break;
+            }
+        }
+        if(index + table[text[index]] <= indexA){
+            index = indexA - table[text[index]] + 1;
+        }
+    }
+
+    return NULL;
 
 }
 
