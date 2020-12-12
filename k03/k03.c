@@ -29,6 +29,7 @@ char* ForceSearch(char text[], char key[])
                 return &text[pos];
             }
         }
+        a=0;
     }
     
     return NULL;
@@ -37,13 +38,13 @@ char* ForceSearch(char text[], char key[])
 char* BMSearch(char text[], char key[])
 {
     //  ここを実装する
-    int index, i, key_len, text_len, table[256];
+    int index, indexA, i, key_len, text_len, table[256];
     
     key_len = strlen(key);
     text_len = strlen(text);
 
     //table
-    for(index=0; index<=key_len; index++){
+    for(index=0; index<=255; index++){
         table[index] = key_len;
     }
     for(index=0; index<key_len; index++){
@@ -53,15 +54,19 @@ char* BMSearch(char text[], char key[])
 
     //seach
     for(index = key_len -1; index < text_len - 1; index = index + table[text[index]]){
-        printf("a");
+        indexA = index;
         for(i=0; i<key_len; i++){
-            if(text[index-i]==key[key_len-1-i]){
+            if(text[index]==key[key_len-1-i]){
                 if(i==key_len-1){
-                    return &text[index-key_len+1];
+                    return &text[index];
                 }
+                index = index-1;
             }else{
                 break;
             }
+        }
+        if(index + table[text[index]] <= indexA){
+            index = indexA - table[text[index]] + 1;
         }
     }
 
