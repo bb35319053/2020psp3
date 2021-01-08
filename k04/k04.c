@@ -108,7 +108,7 @@ void QuickSort(City arrayCity[], int left, int right)
     City city;
 
     pivot = arrayCity[left].seafood;
-    if(sizeof(arrayCity) >= 2){
+    if(strlen(arrayCity) >= 2){
         while(1){
 
             for(i = left; i <= right; i++){
