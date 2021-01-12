@@ -107,17 +107,21 @@ void DepthFirstSearch(int size, int matrix[size][size], int start)
 {
     //  ここを実装する
     int visited[size],stack,i;
-    StackInit;
+    for(i = 0; i <= size; i++){
+        visited[i] = 0; 
+    }
+    
+    StackInit();
     StackPush(start);
 
-    while(StackIsEmpty == FALSE){
-        stack = StackPop;
+    while(StackIsEmpty() == FALSE){
+        stack = StackPop();
 
         if(visited[stack] == 0){
             visited[stack] = 1;
-            printnf("viseted to %s\n", ArrayStation->kanji[stack]);
+            printnf("viseted to %s\n", ArrayStation[stack].kanji);
 
-            for(i = 0; i <= size; i++){
+            for(i = 0; i <= size-1; i++){
                 if(matrix[stack][i] != 0){
                     StackPush(i);
                 }
