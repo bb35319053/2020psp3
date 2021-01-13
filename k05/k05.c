@@ -107,10 +107,10 @@ void DepthFirstSearch(int size, int matrix[size][size], int start)
 {
     //  ここを実装する
     int visited[size],stack,i;
-    for(i = 0; i <= size; i++){
+    for(i = 0; i < size; i++){
         visited[i] = 0; 
     }
-    
+
     StackInit();
     StackPush(start);
 
