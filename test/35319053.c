@@ -1,22 +1,20 @@
 #include <stdio.h>
-#define ARRAY_SIZE 7
-int main(void)
+#include <math.h>
+int main()
 {
-    int array[ARRAY_SIZE] = {1,5,3,8,2,4,6};
-    int pos;
-    int result;
-    int key = 3;
-
-    result = -1;
-
-    for (pos=0; pos < ARRAY_SIZE; pos++){
-        if(key = array[pos]){
-            result = pos;
-            break;
+    double x, xn, fd, h, f
+    x = 2.0;
+    h = 0.0001;
+    while(1) {
+    printf("x=%lf¥n",x);
+    fd = (f(x+h)-f(x))/h;
+    xn = x - f(x)/fd;
+        if(fabs(xn-x) < 0.00001){
+        break;
+        } else {
+        x = xn;
         }
     }
-
-    printf("result = %d/n",result);
-    
+    printf("answer=%lf¥",xn);
     return 0;
 }

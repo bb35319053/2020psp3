@@ -119,7 +119,7 @@ void DepthFirstSearch(int size, int matrix[size][size], int start)
 
         if(visited[stack] == 0){
             visited[stack] = 1;
-            printnf("viseted to %s\n", ArrayStation[stack].kanji);
+            printf("viseted to %s\n", ArrayStation[stack].kanji);
 
             for(i = 0; i <= size-1; i++){
                 if(matrix[stack][i] != 0){
