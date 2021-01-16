@@ -198,7 +198,7 @@ void BreadthFirstSearch(int size, int matrix[size][size], int start)
     printf("幅優先探索\n");
     int visited[size], i;
     Item station;
-    for(i = 0; i <= size; i++){
+    for(i = 0; i <= size-1; i++){
         visited[i] = 0;
     }
     InitQueue();
