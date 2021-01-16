@@ -1,5 +1,5 @@
 # 課題5 レポート
-学生番号　氏名
+学生番号：35319053　氏名：山口　陸
 
 
 ## 課題
@@ -98,12 +98,47 @@ int AdjacencyMatrix[MAX_STATIONS][MAX_STATIONS] = {
 
 ## ソースコードの説明
 
+深さ優先
+110 宣言
+111~113 visitedの初期化
+115 stackの初期化
+116 stackに最初の駅の数字を入れる
+118 繰り返す時にstackが空だったら終わるwhile文
+119 stackの一番上を取り出す
+121~ 取り出した駅に行ったことなかったら、その駅のvisitedを1にする。
+125~ 取り出した駅から行ける駅を探してstackに入れる。
 
-
+幅優先
+119,200 宣言
+201~203 visitedの初期化
+204 Queueの初期化
+205 Queueに最初の駅を入れる
+207~ Queueから何も取り出せなくなったら終了するwhile文
+208 最初の駅をstationに取り出す
+209,210 取り出した駅に行ったことなかったら、その駅のvisitedを1にする
+212~ 取り出した駅から行ける駅を探してQueueに入れていく
 ## 出力結果
 
 ```
-
+深さ優先探索
+viseted to 赤迫      
+viseted to 長崎大学前
+viseted to 長崎駅前  
+viseted to 市民会館  
+viseted to 蛍茶屋    
+viseted to 崇福寺    
+viseted to 新地中華街
+viseted to 石橋      
+幅優先探索
+visited to 赤迫      
+visited to 長崎大学前
+visited to 長崎駅前  
+visited to 新地中華街
+visited to 市民会館
+visited to 石橋
+visited to 崇福寺
+visited to 蛍茶屋
+Time Required: 7
 ```
 
 ## 修正履歴
