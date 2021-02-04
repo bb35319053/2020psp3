@@ -74,21 +74,23 @@ void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
     //　ここを実装する
     int i, j, k, calorie;
 
-    for(i = 0; i <= items + 1; i++){
-        for(j = 0; j <= nap_size + 1; j++){
+    for(i = 0; i <= items; i++){
+        for(j = 0; j <= nap_size; j++){
             nap_value[i][j] == 0;
         }
     }
 
     for(i = 1; i <= items; i++){
         for(k = 1; k < arrayItem[i-1].price; k++){
-            nap_value[i][j] = nap_value[i-1][j];
+            nap_value[i][k] = nap_value[i-1][k];
         }
 
-        for(j = arrayItem[i-1].price + 1; i <= nap_size + 1; j++){
+        for(j = arrayItem[i-1].price + 1; j <= nap_size; j++){
             calorie = arrayItem[i-1].calorie + nap_value[i-1][j-arrayItem[i-1].calorie];
-            if(calorie > nap_value[i][j]){
+            if(calorie > nap_value[i-1][j]){
                 nap_value[i][j] = calorie;
+            }else{
+                nap_value[i][j] = nap_value[i-1][j];
             }
         }
     }
